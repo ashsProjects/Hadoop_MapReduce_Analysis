@@ -87,12 +87,14 @@ hadoop jar build/libs/Assign3.jar Q7 /hw/analysis.txt /hw/Q7/<segment_name> <1-6
 hadoop fs -cat /hw/Q7/<segment_name>/part-r-00000
 ```
 <div>
-    <a href="./hw/Q7/loudness_start/part-r-00000">Start Loudness Segment</a>
-    <a href="./hw/Q7/max_loudness/part-r-00000">Max Loudness Segment</a>
-    <a href="./hw/Q7/max_loudness_time/part-r-00000">Max Loudness Time Segment</a>
-    <a href="./hw/Q7/pitch/part-r-00000">Pitch Segment</a>
-    <a href="./hw/Q7/start_time/part-r-00000">Start Time Segment</a>
-    <a href="./hw/Q7/timbre/part-r-00000">Timbre Segment</a>
+    <ul>
+        <li><a href="./hw/Q7/loudness_start/part-r-00000">Start Loudness Segment</a></li>
+        <li><a href="./hw/Q7/max_loudness/part-r-00000">Max Loudness Segment</a></li>
+        <li><a href="./hw/Q7/max_loudness_time/part-r-00000">Max Loudness Time Segment</a></li>
+        <li><a href="./hw/Q7/pitch/part-r-00000">Pitch Segment</a></li>
+        <li><a href="./hw/Q7/start_time/part-r-00000">Start Time Segment</a></li>
+        <li><a href="./hw/Q7/timbre/part-r-00000">Timbre Segment</a></li>
+    </ul>
 </div>
 I have 6 mappers for this and the appropriate mapper is set by an argument in the command line. They are in the order described in the question. Each mapper will get the appropriate column and set it as the value. The key for them is the same so that every value goes to the same reducer as an iterable. In the reducer, the value is split into numbers and it maintains a sum of each column in an array. I then divide each of the values in the array and create a String array out of that. This is written to the final output as the value and the key is the name of the job. Each is a separate output file, so Q8 contains 6 different output files.
 
@@ -129,22 +131,22 @@ hadoop fs -cat /hw/Q9mean/part-r-00000
     </div>
     <div>
         <p>Song with hottness 1.01: </p>
-        <p>
-        Hottness: 1.01
-        Song name: unique song name
-        Song artist: unique artist name
-        Tempo: (104.038) + (46.53) = 150.568
-        Time Signature: 4 - 1 = 3
-        Danceability = 0 + 0 = 0
-        Duration = 269.63 - 124.577 = 145.053
-        Mode: 1 + 0 = 1
-        Energy: 0 + 0 = 0
-        Key: 10 - 1 = 9
-        Loudness: -5.388 - 5.156 = -10.544
-        Fade-in: 5.283 - 3.060 = 2.223
-        Fade-out: 258.461 - 118.329 = 140.132
-        Terms: 'pop', 'dirty', 'rock', 'indie', 'jazz'
-        </p>
+        <ul>
+            <li>Hottness: 1.01</li>
+            <li>Song name: unique song name</li>
+            <li>Song artist: unique artist name</li>
+            <li>Tempo: (104.038) + (46.53) = 150.568</li>
+            <li>Time Signature: 4 - 1 = 3</li>
+            <li>Danceability = 0 + 0 = 0</li>
+            <li>Duration = 269.63 - 124.577 = 145.053</li>
+            <li>Mode: 1 + 0 = 1</li>
+            <li>Energy: 0 + 0 = 0</li>
+            <li>Key: 10 - 1 = 9</li>
+            <li>Loudness: -5.388 - 5.156 = -10.544</li>
+            <li>Fade-in: 5.283 - 3.060 = 2.223</li>
+            <li>Fade-out: 258.461 - 118.329 = 140.132</li>
+            <li>Terms: 'pop', 'dirty', 'rock', 'indie', 'jazz'</li>
+        </ul>
     </div>
 </div>
 There are two jobs. The first will take the output of the 3rd question and use it as an input. This file is already sorted. It has the hotness and the data mentioned above in the question. The mapper of the first job wll just write the text ad value and a string as the key. This way, everything goes to one reducer as an iterable. The reducer will take in that iterable, and calculate the differences for each numeric column. This is written as Q9changes and is the output of the second job. It will use the same mapper as the first, but the reducer is different. It will calculate the mean of each column and output one line with all of those values. This can be used to calculate the values for a song with a higher hottness.
