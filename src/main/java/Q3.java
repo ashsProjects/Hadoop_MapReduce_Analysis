@@ -26,7 +26,6 @@ public class Q3 {
             try {hotness = Double.parseDouble(data[1]);}
             catch (NumberFormatException nfe) {hotness = 0.0;}
 
-
             result.set(hotness);
             context.write(new Text(songDetails), result);
         }
