@@ -2,6 +2,8 @@
 #### Ayush Adhikari
 <hr>
 
+This project was an introduction to using Hadoop MapReduce to analyze a large file (~1.6 GB), namely the Million Song subset containing 10,000 songs. The files were stored using HDFS and cluster size consisted of 10 machines. There are 10 Java files with jobs of their own which are focused on answering the 10 questions below. Each question details the command used to run them, outputs, and the explanation of the jobs.
+
 ### Q1 Which artist has the most songs in the data set?
 ```bash
 hadoop jar build/libs/Assign3.jar Q1 /hw/analysis.txt /hw/Q1 /hw/Q1sorted
